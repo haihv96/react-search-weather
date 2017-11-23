@@ -3,14 +3,10 @@ import ButtonRemove from './ButtonRemove';
 import PropTypes from 'prop-types';
 
 const InputProvince = (props) => {
-  if (props.canRemove === true) {
-    var buttonRemove = <ButtonRemove {...props}/>;
-  } else {
-    var buttonRemove = '';
-  }
+  var buttonRemove = props.canRemove ? <ButtonRemove {...props}/> : '';
   return (
     <div>
-      <div className="form-inline">
+      <div className={`form-inline ${props.fail ? 'has-error' : ''}`}>
         <div className="form-group">
           <input
             type="text"
@@ -23,10 +19,10 @@ const InputProvince = (props) => {
       </div>
     </div>
   )
-}
+};
 
 InputProvince.propTypes = {
   canRemove: PropTypes.bool.isRequired
-}
+};
 
-export default InputProvince
+export default InputProvince;

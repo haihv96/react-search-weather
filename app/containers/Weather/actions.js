@@ -37,14 +37,14 @@ export const removeInputProvince = (provinceId) => {
 
 export const loadWeathers = () => {
   return {
-    type: LOAD_WEATHERS,
+    type: LOAD_WEATHERS
   }
 }
 
 export const weathersLoaded = (weathers) => {
   return {
     type: LOAD_WEATHERS_SUCCESS,
-    weathers,
+    weathers
   }
 }
 

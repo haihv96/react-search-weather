@@ -15,6 +15,7 @@ const InputProvinceList = (props) => {
             key={inputProvince.get('id')}
             id={inputProvince.get('id')}
             canRemove={props.inputProvinces.size <= 1 ? false : true}
+            fail={props.idsInputProvinceFail.includes(inputProvince.get('id'))}
             {...props}
           />
         ))
@@ -30,7 +31,7 @@ const InputProvinceList = (props) => {
       <button type="submit" className="btn btn-primary">Search Wheather</button>
     </form>
   )
-}
+};
 
 InputProvinceList.propTypes = {
   inputProvinces: ImmutablePropTypes.listOf(
@@ -41,6 +42,6 @@ InputProvinceList.propTypes = {
   ).isRequired,
   dispatchAddInputProvince: PropTypes.func.isRequired,
   dispatchLoadWeathers: PropTypes.func.isRequired,
-}
+};
 
 export default InputProvinceList;

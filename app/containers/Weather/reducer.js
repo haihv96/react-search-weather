@@ -1,4 +1,6 @@
-import {fromJS} from 'immutable';
+import {fromJS, List} from 'immutable';
+import {convertIdsProvince} from 'utils/weather';
+import {provincesTxt} from './provincesTxt';
 
 import {
   ADD_INPUT_PROVINCE,
@@ -16,6 +18,8 @@ const initialState = fromJS({
     loading: false,
     error: false,
     weathersData: [],
+    idsProvince: [],
+    idsInputProvinceFail: []
   }
 });
 
@@ -37,11 +41,14 @@ const weatherReducer = (state = initialState, action) => {
         state.get('inputProvinces').filter(province => province.get('id') !== action.provinceId)
       );
     case LOAD_WEATHERS:
-      return state.setIn(['loadWeathers', 'loading'], true);
+      let convert = convertIdsProvince(state.get('inputProvinces'), provincesTxt);
+      return state.setIn(['loadWeathers', 'loading'], true)
+        .setIn(['loadWeathers', 'idsProvince'], convert.idsProvince)
+        .setIn(['loadWeathers', 'idsInputProvinceFail'], convert.idsInputProvinceFail);
     case LOAD_WEATHERS_SUCCESS:
       return state.setIn(['loadWeathers', 'loading'], false)
         .setIn(['loadWeathers', 'error'], false)
-        .setIn(['loadWeathers', 'weathersData'], action.weathers);
+        .setIn(['loadWeathers', 'weathersData'], List(action.weathers));
     case LOAD_WEATHERS_ERROR:
       return state.setIn(['loadWeathers', 'loading'], false)
         .setIn(['loadWeathers', 'error'], action.error);

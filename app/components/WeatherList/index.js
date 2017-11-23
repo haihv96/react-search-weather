@@ -17,10 +17,10 @@ const WeatherList = ({loadWeathers}) => {
 
 WeatherList.propTypes = {}
 
-// WeatherList.propTypes = {
-//   loadWeathers: ImmutalbePropTypes.contains({
-//     weathersData: ImmutalbePropTypes.list.isRequired
-//   }).isRequired
-// }
+WeatherList.propTypes = {
+  loadWeathers: ImmutalbePropTypes.contains({
+    weathersData: ImmutalbePropTypes.list.isRequired
+  }).isRequired
+}
 
 export default WeatherList;
