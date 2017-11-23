@@ -2,6 +2,7 @@ import {
   ADD_INPUT_PROVINCE,
   EDIT_INPUT_PROVINCE,
   REMOVE_INPUT_PROVINCE,
+  CONVERT_PROVINCE_TO_ID,
   LOAD_WEATHERS,
   LOAD_WEATHERS_SUCCESS,
   LOAD_WEATHERS_ERROR
@@ -32,6 +33,13 @@ export const removeInputProvince = (provinceId) => {
   return {
     type: REMOVE_INPUT_PROVINCE,
     provinceId
+  }
+}
+
+export const convertProvinceToId = (results) => {
+  return {
+    type: CONVERT_PROVINCE_TO_ID,
+    results
   }
 }
 

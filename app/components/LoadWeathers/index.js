@@ -14,7 +14,7 @@ const LoadWeathers = (props) => {
     }
   }
   else {
-    weatherList = <WeatherList {...props}/>
+    weatherList = <WeatherList loadWeathers={props.loadWeathers}/>
   }
   return (
     <div>

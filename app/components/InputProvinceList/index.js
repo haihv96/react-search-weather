@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import InputProvince from '../InputProvince';
+import {provincesTxt} from './provincesTxt';
+import {convertIdsProvince} from 'utils/weather';
 
 const InputProvinceList = (props) => {
   return (
     <form onSubmit={e => {
       e.preventDefault();
+      props.dispatchConvertProvinceId(convertIdsProvince(props.inputProvinces, provincesTxt));
       props.dispatchLoadWeathers();
     }}>
       {

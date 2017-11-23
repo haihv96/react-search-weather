@@ -4,6 +4,7 @@ import {
   addInputProvince,
   editInputProvince,
   removeInputProvince,
+  convertProvinceToId,
   loadWeathers
 } from './actions';
 import InputProvinceList from 'components/InputProvinceList';
@@ -25,7 +26,7 @@ const Weather = (props) => (
     <div className="row">
       <div className="col-md-8 col-md-offset-2">
         <InputProvinceList {...props}/>
-        <LoadWeathers {...props}/>
+        <LoadWeathers loadWeathers={props.loadWeathers}/>
       </div>
     </div>
   </div>
@@ -47,6 +48,9 @@ const mapDispatchToProps = dispatch => {
     },
     dispatchRemoveInputProvince: (provinceId) => {
       dispatch(removeInputProvince(provinceId))
+    },
+    dispatchConvertProvinceId: (results) => {
+      dispatch(convertProvinceToId(results));
     },
     dispatchLoadWeathers: () => {
       dispatch(loadWeathers());

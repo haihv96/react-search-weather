@@ -1,11 +1,10 @@
 import {fromJS, List} from 'immutable';
-import {convertIdsProvince} from 'utils/weather';
-import {provincesTxt} from './provincesTxt';
 
 import {
   ADD_INPUT_PROVINCE,
   EDIT_INPUT_PROVINCE,
   REMOVE_INPUT_PROVINCE,
+  CONVERT_PROVINCE_TO_ID,
   LOAD_WEATHERS,
   LOAD_WEATHERS_SUCCESS,
   LOAD_WEATHERS_ERROR
@@ -40,11 +39,12 @@ const weatherReducer = (state = initialState, action) => {
         'inputProvinces',
         state.get('inputProvinces').filter(province => province.get('id') !== action.provinceId)
       );
-    case LOAD_WEATHERS:
-      let convert = convertIdsProvince(state.get('inputProvinces'), provincesTxt);
+    case CONVERT_PROVINCE_TO_ID:
       return state.setIn(['loadWeathers', 'loading'], true)
-        .setIn(['loadWeathers', 'idsProvince'], convert.idsProvince)
-        .setIn(['loadWeathers', 'idsInputProvinceFail'], convert.idsInputProvinceFail);
+        .setIn(['loadWeathers', 'idsProvince'], action.results.idsProvince)
+        .setIn(['loadWeathers', 'idsInputProvinceFail'], action.results.idsInputProvinceFail);
+    case LOAD_WEATHERS:
+      return state.setIn(['loadWeathers', 'loading'], true);
     case LOAD_WEATHERS_SUCCESS:
       return state.setIn(['loadWeathers', 'loading'], false)
         .setIn(['loadWeathers', 'error'], false)
