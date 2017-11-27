@@ -5,7 +5,8 @@ import {
   editInputProvince,
   removeInputProvince,
   convertProvinceToId,
-  loadWeathers
+  loadWeathers,
+  convertWeather
 } from './actions';
 import InputProvinceList from 'components/InputProvinceList';
 import LoadWeathers from 'components/LoadWeathers';
@@ -18,24 +19,30 @@ import saga from './saga';
 import {
   makeSelectInputProvinces,
   makeSelectLoadWeathers,
-  selectIdsInputProvinceFail
+  selectIdsInputProvinceFail,
+  selectWeatherConverted
 } from './selector';
 
-const Weather = (props) => (
-  <div className="container">
-    <div className="row">
-      <div className="col-md-8 col-md-offset-2">
-        <InputProvinceList {...props}/>
-        <LoadWeathers loadWeathers={props.loadWeathers}/>
+const Weather = (props) => {
+  return (<div className="container">
+      <div className="row">
+        <div className="col-md-8 col-md-offset-2">
+          <InputProvinceList {...props}/>
+          <LoadWeathers loadWeathers={props.loadWeathers}
+                        argTemp={props.loadWeathers.get('argTemp')}
+                        dispatchConvertWeather={props.dispatchConvertWeather}
+                        converted={props.converted}/>
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 const mapStateToProps = createStructuredSelector({
   inputProvinces: makeSelectInputProvinces(),
   idsInputProvinceFail: selectIdsInputProvinceFail(),
-  loadWeathers: makeSelectLoadWeathers()
+  loadWeathers: makeSelectLoadWeathers(),
+  converted: selectWeatherConverted()
 });
 
 const mapDispatchToProps = dispatch => {
@@ -54,6 +61,9 @@ const mapDispatchToProps = dispatch => {
     },
     dispatchLoadWeathers: () => {
       dispatch(loadWeathers());
+    },
+    dispatchConvertWeather: (weathersConverted) => {
+      dispatch(convertWeather(weathersConverted));
     }
   }
 }

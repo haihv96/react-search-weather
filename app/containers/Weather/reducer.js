@@ -7,7 +7,8 @@ import {
   CONVERT_PROVINCE_TO_ID,
   LOAD_WEATHERS,
   LOAD_WEATHERS_SUCCESS,
-  LOAD_WEATHERS_ERROR
+  LOAD_WEATHERS_ERROR,
+  CONVERT_WEATHER
 } from './constants';
 
 const initialState = fromJS({
@@ -15,7 +16,9 @@ const initialState = fromJS({
   loadWeathers: {
     inputProvinceName: '',
     loading: false,
+    converted: false,
     error: false,
+    argTemp: 20,
     weathersData: [],
     idsProvince: [],
     idsInputProvinceFail: []
@@ -46,12 +49,16 @@ const weatherReducer = (state = initialState, action) => {
     case LOAD_WEATHERS:
       return state.setIn(['loadWeathers', 'loading'], true);
     case LOAD_WEATHERS_SUCCESS:
-      return state.setIn(['loadWeathers', 'loading'], false)
+      return state.setIn(['loadWeathers', 'loading'], true)
         .setIn(['loadWeathers', 'error'], false)
         .setIn(['loadWeathers', 'weathersData'], List(action.weathers));
     case LOAD_WEATHERS_ERROR:
       return state.setIn(['loadWeathers', 'loading'], false)
         .setIn(['loadWeathers', 'error'], action.error);
+    case CONVERT_WEATHER:
+      return state.setIn(['loadWeathers', 'loading'], false)
+        .setIn(['loadWeathers', 'weathersData'], List(action.weathersConverted))
+        .setIn(['loadWeathers', 'converted'], true);
     default:
       return state;
   }

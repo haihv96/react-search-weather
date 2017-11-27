@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './style.css';
+import {Link} from 'react-router-dom';
 
 const Weather = ({weather}) => {
   return (
@@ -14,7 +14,18 @@ const Weather = ({weather}) => {
       }
       <div className="card-block">
         <h3 className="card-title">{weather.name ? weather.name : `none`} - {weather.sys.country}</h3>
-        <p className="card-text">wind: {weather.wind.speed}</p>
+        <p className="card-text">
+          temperature: {weather.main.temp} &#8451;
+          ({weather.main.temp_min} - {weather.main.temp_max} &#8451;)
+        </p>
+        <p className="card-text">
+          {weather.diffArgTemp > 0 ? 'increase' : 'reduction'} :
+          {Math.abs(weather.diffArgTemp)}
+          &#8451;
+        </p>
+        <p className="card-text">wind: {weather.wind.speed} km/h</p>
+        <p className="card-text">visibility: {weather.visibility} km</p>
+        <h4><Link to={`/weather/${weather.id}`}>Detail</Link></h4>
       </div>
     </div>
   )

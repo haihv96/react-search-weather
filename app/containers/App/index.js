@@ -14,6 +14,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Weather from 'containers/Weather';
+import WeatherDetailPage from 'containers/WeatherDetailPage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,6 +23,7 @@ export default function App() {
     <div>
       <Switch>
         <Route exact path="/" component={Weather} />
+        <Route exact path="/weather/:id" component={WeatherDetailPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

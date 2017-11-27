@@ -21,3 +21,8 @@ export const selectIdsProvince = () => createSelector(
   selectWeather,
   (weatherState) => weatherState.getIn(['loadWeathers', 'idsProvince'])
 )
+
+export const selectWeatherConverted = () => createSelector(
+  selectWeather,
+  (weatherState) => weatherState.getIn(['loadWeathers', 'converted'])
+)

@@ -11,7 +11,7 @@ export function* getWeathers() {
     const requestUrl = `http://api.openweathermap.org/data/2.5/group?id=${
       idsProvince.join(',')}&units=metric&appid=b5697f67976b3b6beabb66062be75a11`;
     const weathers = yield call(request, requestUrl);
-    yield put(weathersLoaded(weathers.list, idsInputProvinceFail));
+    yield put(weathersLoaded(weathers.list));
   } catch (err) {
     yield put(weatherLoadingError(err));
   }
