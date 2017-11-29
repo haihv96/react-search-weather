@@ -16,7 +16,6 @@ const initialState = fromJS({
   loadWeathers: {
     inputProvinceName: '',
     loading: false,
-    converted: false,
     error: false,
     argTemp: 20,
     weathersData: [],
@@ -57,8 +56,7 @@ const weatherReducer = (state = initialState, action) => {
         .setIn(['loadWeathers', 'error'], action.error);
     case CONVERT_WEATHER:
       return state.setIn(['loadWeathers', 'loading'], false)
-        .setIn(['loadWeathers', 'weathersData'], List(action.weathersConverted))
-        .setIn(['loadWeathers', 'converted'], true);
+        .setIn(['loadWeathers', 'weathersData'], List(action.weathersConverted));
     default:
       return state;
   }

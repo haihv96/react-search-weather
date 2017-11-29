@@ -2,8 +2,8 @@ import {
   LOAD_WEATHER,
   LOAD_WEATHER_SUCCESS,
   LOAD_WEATHER_ERROR,
-  LOAD_PROVINCE_ID,
-  CONVERT_WEATHER_DETAIL
+  CONVERT_WEATHER_DETAIL,
+  TOGGLE_MARKER
 } from './constants';
 
 export const loadWeather = (provinceId) => {
@@ -27,16 +27,16 @@ export const weatherLoadingError = (error) => {
   }
 };
 
-export const loadProvinceId = (provinceId) => {
-  return {
-    type: LOAD_PROVINCE_ID,
-    provinceId
-  }
-};
-
 export const convertWeatherDetail = (weatherConverted) => {
   return {
     type: CONVERT_WEATHER_DETAIL,
     weatherConverted
+  }
+};
+
+export const toggleMarker = (isOpenInfoWindow) => {
+  return {
+    type: TOGGLE_MARKER,
+    isOpenInfoWindow
   }
 };

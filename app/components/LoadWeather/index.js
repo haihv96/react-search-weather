@@ -20,7 +20,10 @@ class LoadWeather extends React.Component {
       }
     }
     else {
-      weatherDetail = <WeatherDetail weather={this.props.loadWeather.get('weatherData')}/>
+      weatherDetail = <WeatherDetail
+        weather={this.props.loadWeather.get('weatherData')}
+        isOpenInfoWindow={this.props.loadWeather.getIn(['googleMap', 'isOpenInfoWindow'])}
+        dispatchToggleMarker={this.props.dispatchToggleMarker}/>
     }
     return (
       <div>

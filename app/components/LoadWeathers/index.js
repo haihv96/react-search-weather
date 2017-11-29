@@ -7,7 +7,6 @@ class LoadWeathers extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.loadWeathers.get('weathersData')
       != nextProps.loadWeathers.get('weathersData')
-      && this.props.converted == false
     ) {
       this.props.dispatchConvertWeather(
         convertWeatherProperty(

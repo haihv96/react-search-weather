@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {FaMinus} from 'react-icons/lib/fa';
 
 const ButtonRemove = (props) => {
   return (
@@ -8,7 +9,7 @@ const ButtonRemove = (props) => {
       className="btn btn-xs btn-danger"
       onClick={() => {
         props.dispatchRemoveInputProvince(props.id)
-      }}> - Remove </button>
+      }}><FaMinus/> Remove </button>
   )
 }
 

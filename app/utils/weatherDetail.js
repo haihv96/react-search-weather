@@ -6,6 +6,16 @@ export const convertWeatherDetailProperty = (weather) => {
       temp: (weather.main.temp - 273.15).toFixed(2),
       temp_min: (weather.main.temp_min - 273.15).toFixed(2),
       temp_max: (weather.main.temp_max - 273.15).toFixed(2),
+    },
+    gmapCoord: {
+      defaultCenter: {
+        lat: weather.coord.lat,
+        lng: weather.coord.lon
+      },
+      markerPosition: {
+        lat: weather.coord.lat,
+        lng: weather.coord.lon
+      },
     }
   });
 }

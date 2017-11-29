@@ -22,18 +22,43 @@ import {
   selectIdsInputProvinceFail,
   selectWeatherConverted
 } from './selector';
+import {Panel} from './style';
 
 const Weather = (props) => {
-  return (<div className="container">
-      <div className="row">
-        <div className="col-md-8 col-md-offset-2">
-          <InputProvinceList {...props}/>
-          <LoadWeathers loadWeathers={props.loadWeathers}
-                        argTemp={props.loadWeathers.get('argTemp')}
-                        dispatchConvertWeather={props.dispatchConvertWeather}
-                        converted={props.converted}/>
+  return (
+    <div className="container-fluid">
+      <Panel className="panel panel-default">
+        <div className="panel-heading">
+          <h2 className="panel-title text-center">Weathers Search</h2>
         </div>
-      </div>
+        <div className="panel-body">
+          <div className="row">
+            <div className="col-md-6">
+              <Panel className="panel panel-info">
+                <div className="panel-heading">
+                  <h2 className="panel-title text-center">Input Provinces</h2>
+                </div>
+                <div className="panel-body">
+                  <InputProvinceList {...props}/>
+                </div>
+              </Panel>
+            </div>
+            <div className="col-md-6">
+              <Panel className="panel panel-success">
+                <div className="panel-heading">
+                  <h2 className="panel-title text-center">Results</h2>
+                </div>
+                <div className="panel-body">
+                  <LoadWeathers loadWeathers={props.loadWeathers}
+                                argTemp={props.loadWeathers.get('argTemp')}
+                                dispatchConvertWeather={props.dispatchConvertWeather}
+                                converted={props.converted}/>
+                </div>
+              </Panel>
+            </div>
+          </div>
+        </div>
+      </Panel>
     </div>
   )
 }

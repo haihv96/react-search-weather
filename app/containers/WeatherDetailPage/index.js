@@ -1,9 +1,9 @@
 import React from 'react';
 import LoadWeather from 'components/LoadWeather';
 import {
-  loadProvinceId,
   loadWeather,
-  convertWeatherDetail
+  convertWeatherDetail,
+  toggleMarker
 } from './actions';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
@@ -14,18 +14,34 @@ import reducer from './reducer';
 import injectSaga from 'utils/injectSaga';
 import saga from './saga';
 import {Link} from 'react-router-dom';
+import {Panel, Button} from './style';
+import {FaArrowCircleLeft} from 'react-icons/lib/fa';
 
 class WeatherDetailPage extends React.Component {
   render() {
     return (
-      <div>
-        <Link className="btn btn-primary" to="/">Go to home</Link>
-        <LoadWeather
-          loadWeather={this.props.loadWeather}
-          dispatchLoadWeather={this.props.dispatchLoadWeather}
-          provinceId={this.props.match.params.id}
-          dispatchConvertWeatherDetail={this.props.dispatchConvertWeatherDetail}
-        />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <Panel className="panel panel-success">
+              <div className="panel-heading">
+                <h2 className="panel-title text-center">Weather Detail</h2>
+              </div>
+              <div className="panel-body">
+                <Button>
+                  <Link className="btn btn-primary" to="/"><FaArrowCircleLeft/> back home</Link>
+                </Button>
+                <LoadWeather
+                  loadWeather={this.props.loadWeather}
+                  dispatchLoadWeather={this.props.dispatchLoadWeather}
+                  provinceId={this.props.match.params.id}
+                  dispatchConvertWeatherDetail={this.props.dispatchConvertWeatherDetail}
+                  dispatchToggleMarker={this.props.dispatchToggleMarker}
+                />
+              </div>
+            </Panel>
+          </div>
+        </div>
       </div>
     )
   }
@@ -34,19 +50,19 @@ class WeatherDetailPage extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   loadWeather: selectLoadWeather(),
-  provinceId: selectProvinceId()
+  provinceId: selectProvinceId(),
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    dispatchLoadProvinceId: (provinceId) => {
-      dispatch(loadProvinceId(provinceId));
-    },
     dispatchLoadWeather: (provinceId) => {
       dispatch(loadWeather(provinceId));
     },
     dispatchConvertWeatherDetail: (weatherConverted) => {
       dispatch(convertWeatherDetail(weatherConverted));
+    },
+    dispatchToggleMarker: (isOpenInfoWindow) => {
+      dispatch(toggleMarker(isOpenInfoWindow));
     }
   }
 }
