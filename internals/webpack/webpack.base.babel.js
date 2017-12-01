@@ -43,12 +43,16 @@ module.exports = (options) => ({
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
-        use: 'file-loader',
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'assets/fonts/[name]-[hash].[ext]',
+          }
+        },
       },
       {
         test: /\.(jpg|png|gif)$/,
         use: [
-          'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {

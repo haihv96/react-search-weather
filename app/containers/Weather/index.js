@@ -50,9 +50,9 @@ const Weather = (props) => {
                 </div>
                 <div className="panel-body">
                   <LoadWeathers loadWeathers={props.loadWeathers}
-                                argTemp={props.loadWeathers.get('argTemp')}
-                                dispatchConvertWeather={props.dispatchConvertWeather}
-                                converted={props.converted}/>
+                    argTemp={props.loadWeathers.get('argTemp')}
+                    dispatchConvertWeather={props.dispatchConvertWeather}
+                    converted={props.converted}/>
                 </div>
               </Panel>
             </div>
